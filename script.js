@@ -338,6 +338,62 @@ document.querySelectorAll('img').forEach(img => {
     });
 });
 
+// ===== FAQ Accordion =====
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+
+    question.addEventListener('click', () => {
+        // Close other items
+        const wasActive = item.classList.contains('active');
+
+        faqItems.forEach(otherItem => {
+            otherItem.classList.remove('active');
+        });
+
+        // Toggle current item
+        if (!wasActive) {
+            item.classList.add('active');
+        }
+    });
+});
+
+// ===== Newsletter Subscription =====
+const newsletterForm = document.getElementById('newsletterForm');
+
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const emailInput = document.getElementById('newsletter-email');
+        const email = emailInput.value;
+        const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+
+        // Create WhatsApp message
+        const message = `🫒 *اشتراك جديد في النشرة البريدية*\n\n━━━━━━━━━━━━━━━━━━━\n\n*البريد الإلكتروني:* ${email}\n\nشكراً لاهتمامك بالإيمان للزيتون 🫒`;
+
+        // Send to WhatsApp
+        const whatsappNumber = '201091940551';
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+
+        // Show success message
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '✓ تم الاشتراك بنجاح!';
+        submitBtn.style.background = '#4CAF50';
+        submitBtn.disabled = true;
+
+        // Reset form after delay
+        setTimeout(() => {
+            newsletterForm.reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+        }, 3000);
+    });
+}
+
 // ===== Initialize =====
 document.addEventListener('DOMContentLoaded', function() {
     console.log('الموقع جاهز للعمل ✓');
@@ -349,4 +405,11 @@ document.addEventListener('DOMContentLoaded', function() {
             heroContent.style.opacity = '1';
         }, 100);
     }
+
+    // Animate reviews and about boxes on scroll
+    const animateElements = document.querySelectorAll('.review-card, .about-box, .stat-box');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
+    });
 });
