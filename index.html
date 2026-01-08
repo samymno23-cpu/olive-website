@@ -1,0 +1,191 @@
+---
+layout: default
+title: الصفحة الرئيسية
+---
+
+<div class="hero">
+  <h1>🫒 مرحباً بكم في الإيمان للزيتون</h1>
+  <p>زيت زيتون ومخللات طبيعية 100%</p>
+</div>
+
+<div class="cart-summary">
+  <button onclick="toggleCart()" class="cart-button">
+    🛒 سلة المشتريات (<span id="cart-count">0</span>)
+  </button>
+</div>
+
+<div id="cart-sidebar" class="cart-sidebar">
+  <div class="cart-header">
+    <h2>سلة المشتريات</h2>
+    <button onclick="toggleCart()" class="close-btn">&times;</button>
+  </div>
+  <div id="cart-items" class="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <strong>المجموع:</strong> <span id="cart-total">0</span> ريال
+    </div>
+    <button onclick="checkout()" class="checkout-btn">إتمام الطلب</button>
+    <button onclick="clearCart()" class="clear-btn">مسح السلة</button>
+  </div>
+</div>
+
+<section class="products">
+  <h2>منتجاتنا المميزة</h2>
+
+  <div class="products-grid">
+    {% for product in site.products %}
+    <div class="product-card">
+      <div class="product-image">
+        <img src="{{ product.image }}" alt="{{ product.title }}">
+      </div>
+      <div class="product-info">
+        <h3>{{ product.title }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="product-footer">
+          <span class="price">{{ product.price }} ريال</span>
+          <button onclick="addToCart('{{ product.title }}', {{ product.price }}, '{{ product.image }}')" class="add-to-cart">
+            أضف للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="about">
+  <h2>عن منتجاتنا</h2>
+  <div class="about-content">
+    <p>نقدم لكم أجود أنواع زيت الزيتون البكر الممتاز والمخللات الطبيعية، منتجة بطرق تقليدية مع الحفاظ على أعلى معايير الجودة.</p>
+    <ul>
+      <li>✅ منتجات طبيعية 100%</li>
+      <li>✅ خالية من المواد الحافظة</li>
+      <li>✅ معصورة على البارد</li>
+      <li>✅ توصيل سريع لجميع المناطق</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function updateCartDisplay() {
+  const cartCount = document.getElementById('cart-count');
+  const cartItems = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+
+  cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p class="empty-cart">السلة فارغة</p>';
+    cartTotal.textContent = '0';
+    return;
+  }
+
+  let total = 0;
+  cartItems.innerHTML = cart.map(item => {
+    total += item.price * item.quantity;
+    return `
+      <div class="cart-item">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <p>${item.price} ريال</p>
+        </div>
+        <div class="cart-item-controls">
+          <button onclick="updateQuantity('${item.name}', -1)">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="updateQuantity('${item.name}', 1)">+</button>
+        </div>
+        <button onclick="removeFromCart('${item.name}')" class="remove-btn">🗑️</button>
+      </div>
+    `;
+  }).join('');
+
+  cartTotal.textContent = total.toFixed(2);
+}
+
+function addToCart(name, price, image) {
+  const existingItem = cart.find(item => item.name === name);
+
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({ name, price, image, quantity: 1 });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartDisplay();
+
+  // Show notification
+  showNotification('تم إضافة المنتج للسلة ✅');
+}
+
+function updateQuantity(name, change) {
+  const item = cart.find(item => item.name === name);
+  if (item) {
+    item.quantity += change;
+    if (item.quantity <= 0) {
+      removeFromCart(name);
+      return;
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+  }
+}
+
+function removeFromCart(name) {
+  cart = cart.filter(item => item.name !== name);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartDisplay();
+  showNotification('تم حذف المنتج من السلة');
+}
+
+function clearCart() {
+  if (confirm('هل تريد مسح جميع المنتجات من السلة؟')) {
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+    showNotification('تم مسح السلة');
+  }
+}
+
+function toggleCart() {
+  const sidebar = document.getElementById('cart-sidebar');
+  sidebar.classList.toggle('open');
+}
+
+function checkout() {
+  if (cart.length === 0) {
+    alert('السلة فارغة!');
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const itemsList = cart.map(item => `${item.name} (${item.quantity})`).join(', ');
+
+  alert(`شكراً لطلبك!\n\nالمنتجات: ${itemsList}\nالمجموع: ${total.toFixed(2)} ريال\n\nسيتم التواصل معك قريباً.`);
+
+  clearCart();
+  toggleCart();
+}
+
+function showNotification(message) {
+  const notification = document.createElement('div');
+  notification.className = 'notification';
+  notification.textContent = message;
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.classList.add('show');
+  }, 10);
+
+  setTimeout(() => {
+    notification.classList.remove('show');
+    setTimeout(() => notification.remove(), 300);
+  }, 2000);
+}
+
+// Initialize cart on page load
+updateCartDisplay();
+</script>

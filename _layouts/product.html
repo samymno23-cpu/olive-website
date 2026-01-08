@@ -1,0 +1,139 @@
+---
+layout: default
+---
+
+<div class="product-detail">
+  <div class="container">
+    <div class="product-detail-grid">
+      <div class="product-detail-image">
+        <img src="{{ page.image }}" alt="{{ page.title }}">
+      </div>
+      <div class="product-detail-info">
+        <h1>{{ page.title }}</h1>
+        <p class="product-category">{{ page.category }}</p>
+        <p class="product-price">{{ page.price }} ريال</p>
+        <p class="product-description">{{ page.description }}</p>
+
+        <div class="product-actions">
+          <button onclick="addToCart('{{ page.title }}', {{ page.price }}, '{{ page.image }}')" class="btn-add-large">
+            أضف إلى السلة 🛒
+          </button>
+        </div>
+
+        <div class="product-content">
+          {{ content }}
+        </div>
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="{{ '/' | relative_url }}">← العودة إلى المنتجات</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.product-detail {
+  padding: 3rem 0;
+  min-height: 70vh;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.product-detail-image img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.product-detail-info h1 {
+  font-size: 2.5rem;
+  color: #2c5f2d;
+  margin-bottom: 1rem;
+}
+
+.product-category {
+  display: inline-block;
+  background: #97bc62;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.product-price {
+  font-size: 2.5rem;
+  color: #ff6b6b;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.product-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.btn-add-large {
+  background: #2c5f2d;
+  color: white;
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.3rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.btn-add-large:hover {
+  background: #1e4620;
+  transform: scale(1.05);
+}
+
+.product-content {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #eee;
+}
+
+.product-content h2 {
+  color: #2c5f2d;
+  margin-bottom: 1rem;
+}
+
+.product-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.product-content li {
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.back-link a {
+  color: #2c5f2d;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

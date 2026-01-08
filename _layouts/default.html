@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="container">
+        <div class="logo">
+          <h1>🫒 {{ site.title }}</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="{{ '/' | relative_url }}">الرئيسية</a></li>
+          <li><a href="#products">المنتجات</a></li>
+          <li><a href="#about">عن المتجر</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>عن المتجر</h3>
+          <p>{{ site.description }}</p>
+        </div>
+        <div class="footer-section">
+          <h3>تواصل معنا</h3>
+          <p>📧 البريد: info@olive-faith.com</p>
+          <p>📱 الهاتف: +966 XX XXX XXXX</p>
+          <p>📍 الموقع: المملكة العربية السعودية</p>
+        </div>
+        <div class="footer-section">
+          <h3>روابط سريعة</h3>
+          <ul>
+            <li><a href="#products">المنتجات</a></li>
+            <li><a href="#about">عن المتجر</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 {{ site.title }} - جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
