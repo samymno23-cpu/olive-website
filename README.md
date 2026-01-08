@@ -1,6 +1,13 @@
 🫒 Olive Website | موقع الإيمان للزيتون
 �
 
+🌐 **الموقع المباشر**: [https://samymno23-cpu.github.io/olive-website/](https://samymno23-cpu.github.io/olive-website/)
+
+[![Website](https://img.shields.io/badge/الموقع_المباشر-زيارة_الآن-brightgreen?style=for-the-badge)](https://samymno23-cpu.github.io/olive-website/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/samymno23-cpu/olive-website)
+
+---
+
 📋 نبذة عن المشروع
 موقع الإيمان للزيتون هو منصة ويب تفاعلية مخصصة لنشر المعلومات والدراسات حول فوائد الزيتون من منظور ديني وصحي. يجمع المشروع بين الدين والعلم لتقديم محتوى قيم وموثوق.
 ✨ المميزات الرئيسية
