@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المدونة - الإيمان للزيتون</title>
+    <meta name="description" content="مقالات ونصائح حول زيت الزيتون وفوائده الصحية">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫒</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🫒</span>
+                    <span class="logo-text">الإيمان للزيتون</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#products">المنتجات</a></li>
+                    <li><a href="blog.html" class="active">المدونة</a></li>
+                    <li><a href="recipes.html">الوصفات</a></li>
+                    <li><a href="gallery.html">المعرض</a></li>
+                    <li><a href="offers.html">العروض</a></li>
+                    <li><a href="index.html#contact">تواصل معنا</a></li>
+                </ul>
+                <a href="tel:01091940551" class="nav-phone">
+                    <span>📞</span>
+                    <span>01091940551</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="القائمة">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>📝 مدونة الإيمان للزيتون</h1>
+            <p>مقالات ونصائح حول زيت الزيتون وفوائده الصحية</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <!-- Search and Filter -->
+            <div class="blog-controls">
+                <div class="search-box">
+                    <input type="text" id="blogSearch" placeholder="ابحث في المقالات..." onkeyup="searchBlog()">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filter-box">
+                    <select id="categoryFilter" onchange="filterBlog()">
+                        <option value="all">جميع الفئات</option>
+                        <option value="صحة">صحة</option>
+                        <option value="نصائح">نصائح</option>
+                        <option value="وصفات">وصفات</option>
+                        <option value="أخبار">أخبار</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="blog-grid" id="blogGrid">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>جاري تحميل المقالات...</p>
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>لم يتم العثور على نتائج</h3>
+                <p>جرب البحث بكلمات مختلفة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>📧 اشترك في النشرة البريدية</h2>
+                    <p>احصل على أحدث المقالات والعروض مباشرة على بريدك الإلكتروني</p>
+                </div>
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="email" id="newsletter-email" placeholder="أدخل بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-primary">اشترك الآن</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🫒</span>
+                        <span class="logo-text">الإيمان للزيتون</span>
+                    </div>
+                    <p class="footer-description">
+                        متجر متخصص في بيع زيت الزيتون والمخللات المصرية الطبيعية بأعلى معايير الجودة
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">التواصل</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:01091940551">📞 01091940551</a></li>
+                        <li><a href="https://wa.me/201091940551" target="_blank">💬 واتساب: 01091940551</a></li>
+                        <li><a href="mailto:samymno23@gmail.com">✉️ samymno23@gmail.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="recipes.html">الوصفات</a></li>
+                        <li><a href="offers.html">العروض</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 الإيمان للزيتون - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/201091940551" class="fab whatsapp" target="_blank" aria-label="واتساب">
+            <span>💬</span>
+        </a>
+        <a href="tel:01091940551" class="fab phone" aria-label="اتصال">
+            <span>☎️</span>
+        </a>
+        <button class="fab dark-mode-toggle" onclick="toggleDarkMode()" aria-label="الوضع الليلي">
+            <span class="dark-mode-icon">🌙</span>
+        </button>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" aria-label="العودة للأعلى">
+        <span>↑</span>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+    <script src="dark-mode.js"></script>
+</body>
+</html>

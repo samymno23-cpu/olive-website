@@ -34,6 +34,8 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="stylesheet" href="features-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -55,6 +57,7 @@
                     <li><a href="#about">من نحن</a></li>
                     <li><a href="#why-us">لماذا نحن</a></li>
                     <li><a href="#products">المنتجات</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
                     <li><a href="#reviews">آراء العملاء</a></li>
                     <li><a href="#faq">الأسئلة الشائعة</a></li>
                     <li><a href="#order">اطلب الآن</a></li>
@@ -505,6 +508,24 @@
                         </div>
                     </div>
 
+                    <!-- Price Calculator -->
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <div id="totalPrice"></div>
+                        </div>
+                    </div>
+
+                    <!-- Coupon Code -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="couponCode">كود الخصم (اختياري)</label>
+                            <input type="text" id="couponCode" name="couponCode" placeholder="أدخل كود الخصم">
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-end;">
+                            <button type="button" onclick="applyCoupon()" class="btn btn-secondary" style="width: 100%;">تطبيق</button>
+                        </div>
+                    </div>
+
                     <div class="form-actions">
                         <button type="submit" class="btn btn-submit">
                             <span>✓</span>
@@ -591,6 +612,9 @@
         <a href="tel:01091940551" class="fab phone" aria-label="اتصال">
             <span>☎️</span>
         </a>
+        <button class="fab dark-mode-toggle" onclick="toggleDarkMode()" aria-label="الوضع الليلي">
+            <span class="dark-mode-icon">🌙</span>
+        </button>
     </div>
 
     <!-- Scroll to Top Button -->
@@ -599,6 +623,8 @@
     </button>
 
     <script src="script.js"></script>
+    <script src="dark-mode.js"></script>
+    <script src="all-features.js"></script>
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
