@@ -1,0 +1,36 @@
+# robots.txt for olive-website
+
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin/
+
+# Disallow data files
+Disallow: /data/
+
+# Sitemap
+Sitemap: https://samymno23-cpu.github.io/olive-website/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Allow search engines to index images
+User-agent: Googlebot-Image
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
