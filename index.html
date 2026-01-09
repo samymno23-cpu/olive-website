@@ -625,6 +625,16 @@
         <span>↑</span>
     </button>
 
+    <!-- EmailJS SDK for sending orders via email -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS
+        // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init("YOUR_PUBLIC_KEY");
+        }
+    </script>
+
     <script src="script.js"></script>
     <script src="dark-mode.js"></script>
     <script src="all-features.js"></script>
