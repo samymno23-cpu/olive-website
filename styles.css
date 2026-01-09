@@ -239,7 +239,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    background: linear-gradient(135deg, #1a4d2e 0%, #4f7942 50%, #6fa257 100%);
     padding: 120px 20px 80px;
     overflow: hidden;
 }
@@ -248,11 +248,21 @@ button {
     content: '🫒';
     position: absolute;
     font-size: 30rem;
-    opacity: 0.05;
+    opacity: 0.08;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(-15deg);
     pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-15deg);
+    }
+    50% {
+        transform: translate(-50%, -55%) rotate(-10deg);
+    }
 }
 
 .hero-overlay {
@@ -261,7 +271,7 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, transparent 0%, rgba(45, 80, 22, 0.05) 100%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
 }
 
 .hero-content {
