@@ -370,9 +370,11 @@ button {
 }
 
 .about-text {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .about-box {
@@ -408,10 +410,13 @@ button {
 }
 
 .about-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
     margin-top: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .stat-box {
@@ -448,9 +453,11 @@ button {
 }
 
 .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .feature-card {
@@ -492,9 +499,11 @@ button {
 }
 
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 40px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .product-card {
@@ -627,9 +636,11 @@ button {
 }
 
 .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .review-card {
@@ -938,15 +949,20 @@ button {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 40px;
     margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     font-size: 1.5rem;
     font-weight: 700;
@@ -969,6 +985,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-items: center;
 }
 
 .footer-links a {
@@ -978,7 +995,7 @@ button {
 
 .footer-links a:hover {
     opacity: 1;
-    transform: translateX(-5px);
+    transform: scale(1.05);
 }
 
 .footer-bottom {
