@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>تقييم العملاء - الإيمان للزيتون</title>
+    <meta name="title" content="تقييم العملاء - الإيمان للزيتون">
+    <meta name="description" content="شاركنا رأيك وتقييمك لمنتجاتنا - الإيمان للزيتون">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫒</text></svg>">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        .review-page {
+            min-height: 100vh;
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .review-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .review-header .logo-icon {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .review-header h1 {
+            color: #2d5016;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .review-header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .review-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2d5016;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2d5016;
+            box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #e74c3c;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Star Rating System */
+        .star-rating {
+            display: flex;
+            gap: 10px;
+            font-size: 50px;
+            justify-content: center;
+            margin: 20px 0;
+            direction: ltr;
+        }
+
+        .star {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+            opacity: 0.3;
+        }
+
+        .star:hover,
+        .star.active {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .star.active {
+            animation: starPulse 0.5s ease;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1.2); }
+            50% { transform: scale(1.4); }
+        }
+
+        .rating-text {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d5016;
+            margin-top: 15px;
+            min-height: 30px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2d5016, #4a7c2e);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(45, 80, 22, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            display: none;
+            border: 2px solid #c3e6cb;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            color: #2d5016;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #4a7c2e;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .review-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+
+            .review-header h1 {
+                font-size: 24px;
+            }
+
+            .review-header p {
+                font-size: 16px;
+            }
+
+            .star-rating {
+                font-size: 40px;
+                gap: 5px;
+            }
+
+            .rating-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🫒</span>
+                    <span class="logo-text">الإيمان للزيتون</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#about">من نحن</a></li>
+                    <li><a href="index.html#products">المنتجات</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="customer-review.html" class="active">تقييم العملاء</a></li>
+                    <li><a href="index.html#contact">تواصل معنا</a></li>
+                </ul>
+                <a href="tel:01091940551" class="nav-phone">
+                    <span>📞</span>
+                    <span>01091940551</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="القائمة">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Review Page -->
+    <section class="review-page">
+        <div class="review-container">
+            <div class="review-header">
+                <span class="logo-icon">🫒</span>
+                <h1>شاركنا رأيك</h1>
+                <p>نسعد بتقييمك لمنتجاتنا وخدماتنا</p>
+            </div>
+
+            <form id="reviewForm" class="review-form">
+                <!-- Customer Name -->
+                <div class="form-group">
+                    <label for="customerName">الاسم <span class="required">*</span></label>
+                    <input type="text" id="customerName" name="customerName" placeholder="أدخل اسمك" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Customer Email -->
+                <div class="form-group">
+                    <label for="customerEmail">البريد الإلكتروني <span class="required">*</span></label>
+                    <input type="email" id="customerEmail" name="customerEmail" placeholder="example@email.com" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Customer Phone -->
+                <div class="form-group">
+                    <label for="customerPhone">رقم الهاتف <span class="required">*</span></label>
+                    <input type="tel" id="customerPhone" name="customerPhone" placeholder="01xxxxxxxxx" pattern="^01[0-9]{9}$" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Star Rating -->
+                <div class="form-group">
+                    <label>التقييم <span class="required">*</span></label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">⭐</span>
+                        <span class="star" data-rating="2">⭐</span>
+                        <span class="star" data-rating="3">⭐</span>
+                        <span class="star" data-rating="4">⭐</span>
+                        <span class="star" data-rating="5">⭐</span>
+                    </div>
+                    <div class="rating-text" id="ratingText"></div>
+                    <input type="hidden" id="ratingValue" name="rating" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Review Text -->
+                <div class="form-group">
+                    <label for="reviewText">تعليقك <span class="required">*</span></label>
+                    <textarea id="reviewText" name="reviewText" rows="5" placeholder="شاركنا تجربتك مع منتجاتنا..." required></textarea>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">
+                    <span>✓</span>
+                    <span>إرسال التقييم</span>
+                </button>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    ✓ شكراً لك! تم إرسال تقييمك بنجاح
+                </div>
+            </form>
+
+            <div class="back-link">
+                <a href="index.html">← العودة للصفحة الرئيسية</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🫒</span>
+                        <span class="logo-text">الإيمان للزيتون</span>
+                    </div>
+                    <p class="footer-description">
+                        متجر متخصص في بيع زيت الزيتون والمخللات المصرية الطبيعية بأعلى معايير الجودة
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">التواصل</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:01091940551">📞 01091940551</a></li>
+                        <li><a href="https://wa.me/201091940551" target="_blank">💬 واتساب: 01091940551</a></li>
+                        <li><a href="mailto:samymno23@gmail.com">✉️ samymno23@gmail.com</a></li>
+                        <li><span>📍 البحيرة وكفر الشيخ</span></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">تابعنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com/aleiman.olive" target="_blank">📘 فيسبوك</a></li>
+                        <li><a href="https://instagram.com/aleiman.olive" target="_blank">📸 إنستجرام</a></li>
+                        <li><a href="https://twitter.com/aleiman_olive" target="_blank">🐦 تويتر</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="terms.html">الشروط والأحكام</a></li>
+                        <li><a href="return-policy.html">سياسة الاسترجاع</a></li>
+                        <li><a href="index.html#faq">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 الإيمان للزيتون - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/201091940551" class="fab whatsapp" target="_blank" aria-label="واتساب">
+            <span>💬</span>
+        </a>
+        <a href="tel:01091940551" class="fab phone" aria-label="اتصال">
+            <span>☎️</span>
+        </a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" aria-label="العودة للأعلى">
+        <span>↑</span>
+    </button>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script src="script.js"></script>
+    <script src="customer-review.js"></script>
+</body>
+</html>
