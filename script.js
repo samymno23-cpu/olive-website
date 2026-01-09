@@ -135,7 +135,7 @@ function validateForm() {
 }
 
 // Form submission
-orderForm.addEventListener('submit', function(e) {
+orderForm.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     // Validate form
@@ -161,23 +161,71 @@ orderForm.addEventListener('submit', function(e) {
         notes: document.getElementById('notes').value
     };
 
-    // Create WhatsApp message
-    const message = createWhatsAppMessage(formData);
+    // Disable submit button
+    const submitBtn = orderForm.querySelector('.btn-submit');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>⏳</span><span>جاري إرسال الطلب...</span>';
+    submitBtn.disabled = true;
 
-    // Send to WhatsApp
-    const whatsappNumber = '201091940551';
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    try {
+        // Send email using EmailJS
+        // Make sure EmailJS is initialized in index.html
+        if (typeof emailjs !== 'undefined') {
+            const response = await emailjs.send(
+                'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+                'YOUR_ORDER_TEMPLATE_ID', // Replace with your EmailJS order template ID
+                {
+                    to_email: 'samymno23@gmail.com',
+                    customer_name: formData.fullName,
+                    customer_phone: formData.phone,
+                    customer_address: formData.address,
+                    governorate: formData.governorate,
+                    payment_method: formData.payment,
+                    product: formData.product,
+                    quantity: formData.quantity,
+                    notes: formData.notes || 'لا يوجد',
+                    date: new Date().toLocaleDateString('ar-EG'),
+                    time: new Date().toLocaleTimeString('ar-EG')
+                }
+            );
 
-    // Open WhatsApp
-    window.open(whatsappUrl, '_blank');
+            console.log('Order email sent successfully:', response);
 
-    // Show success message
-    showSuccessMessage();
+            // Show success message
+            showSuccessMessage();
 
-    // Reset form after a delay
-    setTimeout(() => {
-        orderForm.reset();
-    }, 1000);
+            // Reset form after a delay
+            setTimeout(() => {
+                orderForm.reset();
+            }, 2000);
+
+        } else {
+            throw new Error('EmailJS not loaded');
+        }
+
+    } catch (error) {
+        console.error('Failed to send order email:', error);
+
+        // Fallback to WhatsApp if email fails
+        alert('سيتم تحويلك إلى واتساب لإكمال الطلب');
+
+        const message = createWhatsAppMessage(formData);
+        const whatsappNumber = '201091940551';
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+
+        // Show success message
+        showSuccessMessage();
+
+        // Reset form after a delay
+        setTimeout(() => {
+            orderForm.reset();
+        }, 1000);
+    } finally {
+        // Re-enable submit button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
 });
 
 // Create WhatsApp message from form data
