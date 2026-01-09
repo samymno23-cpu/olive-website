@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الإيمان للزيتون</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫒</text></svg>">
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="admin-logo">
+            <span class="admin-logo-icon">🫒</span>
+            <div class="admin-logo-text">الإيمان للزيتون</div>
+        </div>
+
+        <ul class="admin-menu">
+            <li><a href="dashboard.html" class="active"><span>📊</span><span>لوحة التحكم</span></a></li>
+            <li><a href="products.html"><span>🫒</span><span>المنتجات</span></a></li>
+            <li><a href="orders.html"><span>📦</span><span>الطلبات</span></a></li>
+            <li><a href="blog.html"><span>📝</span><span>المدونة</span></a></li>
+            <li><a href="recipes.html"><span>🍽️</span><span>الوصفات</span></a></li>
+            <li><a href="gallery.html"><span>📸</span><span>معرض الصور</span></a></li>
+            <li><a href="offers.html"><span>🎁</span><span>العروض</span></a></li>
+            <li><a href="coupons.html"><span>🎟️</span><span>الكوبونات</span></a></li>
+            <li><a href="reviews.html"><span>⭐</span><span>التقييمات</span></a></li>
+            <li><a href="customers.html"><span>👥</span><span>العملاء</span></a></li>
+            <li><a href="settings.html"><span>⚙️</span><span>الإعدادات</span></a></li>
+        </ul>
+
+        <div class="admin-logout">
+            <a href="#" onclick="logout()"><span>🚪</span><span>تسجيل الخروج</span></a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+        <div class="admin-header">
+            <h1>لوحة التحكم</h1>
+            <div class="admin-user">
+                <div class="admin-user-avatar">👤</div>
+                <span class="admin-username">المسؤول</span>
+            </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon blue">📦</div>
+                <div class="dashboard-card-content">
+                    <h3 id="totalOrders">0</h3>
+                    <p>إجمالي الطلبات</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon green">💰</div>
+                <div class="dashboard-card-content">
+                    <h3 id="totalRevenue">0 ج</h3>
+                    <p>إجمالي الإيرادات</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon orange">🫒</div>
+                <div class="dashboard-card-content">
+                    <h3 id="totalProducts">0</h3>
+                    <p>عدد المنتجات</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon red">👥</div>
+                <div class="dashboard-card-content">
+                    <h3 id="totalCustomers">500+</h3>
+                    <p>عدد العملاء</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="admin-table-container">
+            <div class="admin-table-header">
+                <h2>الطلبات الأخيرة</h2>
+                <a href="orders.html" class="btn btn-primary">عرض الكل</a>
+            </div>
+
+            <table class="admin-table" id="recentOrdersTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم العميل</th>
+                        <th>المنتج</th>
+                        <th>الكمية</th>
+                        <th>السعر</th>
+                        <th>الحالة</th>
+                        <th>التاريخ</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px;">
+                            <div class="loading-spinner" style="margin: 0 auto;"></div>
+                            <p style="margin-top: 15px; color: #718096;">جاري تحميل البيانات...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quick Stats -->
+        <div style="margin-top: 30px;">
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon blue">📝</div>
+                    <div class="dashboard-card-content">
+                        <h3 id="totalBlogPosts">0</h3>
+                        <p>مقالات المدونة</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon green">🍽️</div>
+                    <div class="dashboard-card-content">
+                        <h3 id="totalRecipes">0</h3>
+                        <p>الوصفات</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon orange">⭐</div>
+                    <div class="dashboard-card-content">
+                        <h3 id="totalReviews">0</h3>
+                        <p>التقييمات</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon red">🎁</div>
+                    <div class="dashboard-card-content">
+                        <h3 id="activeOffers">0</h3>
+                        <p>العروض النشطة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin-auth.js"></script>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
